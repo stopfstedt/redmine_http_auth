@@ -8,6 +8,7 @@ class RegistrationController < ApplicationController
   def autoregistration_form
     @user = User.new :language => Setting.default_language
     set_default_attributes @user
+    logger.info "Hallo Welt"
   end
 
   def register
@@ -22,8 +23,7 @@ class RegistrationController < ApplicationController
   end
 
   def autoregistration_enabled
-    unless Setting.
-      plugin_redmine_http_auth['auto_registration'] == "true"
+    unless Setting.plugin_redmine_http_auth['auto_registration'] == "true"
 
       flash[:error] = l :error_autoregistration_disabled
       redirect_to home_url
